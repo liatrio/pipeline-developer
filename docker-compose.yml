@@ -1,0 +1,15 @@
+version: '3'
+services:
+    jenkins:
+        build: ./jenkins
+        volumes:
+            - /var/run/docker.sock:/var/run/docker.sock
+            # - /path/to/app:/pipeline-dev
+        environment:
+            JAVA_OPTS: -Djenkins.install.runSetupWizard=false
+        ports:
+            - "18080:8080"
+    nexus:
+        image: sonatype/nexus
+        ports:
+            - "18081:8081"
