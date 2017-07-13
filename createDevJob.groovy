@@ -1,12 +1,13 @@
 def shellCommand = '''
 if [ ! -d "$DIRECTORY" ]; then
-    mkdir /var/jenkins_home/jobs/example/workspace/
+    mkdir /var/jenkins_home/jobs/devPipeline/
+    mkdir /var/jenkins_home/jobs/devPipeline/workspace/
 fi
-cp -r ../pipeline-dev/* /var/jenkins_home/jobs/example/workspace/
+cp -r ../pipeline-dev/* /var/jenkins_home/jobs/devPipeline/workspace/
 '''
 
 
-job("local-pipeline-manager") {
+job("pipeline-updater") {
     customWorkspace("/pipeline-dev")
     steps {
         dsl {
