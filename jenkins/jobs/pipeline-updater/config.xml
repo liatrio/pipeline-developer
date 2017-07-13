@@ -1,48 +1,59 @@
 <project>
-    <actions/>
-    <description></description>
-    <keepDependencies>false</keepDependencies>
-    <properties>
-        <com.chikli.hudson.plugin.naginator.NaginatorOptOutProperty plugin="naginator@1.17.2">
-            <optOut>false</optOut>
-        </com.chikli.hudson.plugin.naginator.NaginatorOptOutProperty>
-    </properties>
-    <scm class="hudson.scm.NullSCM"/>
-    <canRoam>true</canRoam>
-    <disabled>false</disabled>
-    <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
-    <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
-    <triggers/>
-    <concurrentBuild>false</concurrentBuild>
-    <customWorkspace>/pipeline-dev</customWorkspace>
-    <builders>
-        <hudson.tasks.Shell>
-            <command>if [ ! -d &quot;/var/jenkins_home/jobs/devPipeline/&quot; ]; then mkdir /var/jenkins_home/jobs/devPipeline/ mkdir /var/jenkins_home/jobs/devPipeline/workspace/ fi cp -r ../pipeline-dev/* /var/jenkins_home/jobs/devPipeline/workspace/</command>
-        </hudson.tasks.Shell>
-        <javaposse.jobdsl.plugin.ExecuteDslScripts plugin="job-dsl@1.64">
-            <scriptText>pipelineJob(&apos;devPipeline&apos;) { definition { cps { script(readFileFromWorkspace(&apos;Jenkinsfile&apos;)) sandbox() } } }</scriptText>
-            <usingScriptText>true</usingScriptText>
-            <sandbox>false</sandbox>
-            <ignoreExisting>false</ignoreExisting>
-            <ignoreMissingFiles>false</ignoreMissingFiles>
-            <failOnMissingPlugin>false</failOnMissingPlugin>
-            <unstableOnDeprecation>false</unstableOnDeprecation>
-            <removedJobAction>DELETE</removedJobAction>
-            <removedViewAction>IGNORE</removedViewAction>
-            <removedConfigFilesAction>IGNORE</removedConfigFilesAction>
-            <lookupStrategy>JENKINS_ROOT</lookupStrategy>
-        </javaposse.jobdsl.plugin.ExecuteDslScripts>
-    </builders>
-    <publishers>
-        <hudson.tasks.BuildTrigger>
-            <childProjects>devPipeline</childProjects>
-            <threshold>
-                <name>SUCCESS</name>
-                <ordinal>0</ordinal>
-                <color>BLUE</color>
-                <completeBuild>true</completeBuild>
-            </threshold>
-        </hudson.tasks.BuildTrigger>
-    </publishers>
-    <buildWrappers/>
+  <actions/>
+  <description></description>
+  <keepDependencies>false</keepDependencies>
+  <properties>
+    <com.chikli.hudson.plugin.naginator.NaginatorOptOutProperty plugin="naginator@1.17.2">
+      <optOut>false</optOut>
+    </com.chikli.hudson.plugin.naginator.NaginatorOptOutProperty>
+  </properties>
+  <scm class="hudson.scm.NullSCM"/>
+  <canRoam>true</canRoam>
+  <disabled>false</disabled>
+  <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
+  <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
+  <triggers/>
+  <concurrentBuild>false</concurrentBuild>
+  <customWorkspace>/pipeline-dev</customWorkspace>
+  <builders>
+    <hudson.tasks.Shell>
+      <command>if [ ! -d &quot;$DIRECTORY&quot; ]; then
+    mkdir /var/jenkins_home/jobs/devPipeline/
+    mkdir /var/jenkins_home/jobs/devPipeline/workspace/
+fi
+cp -r ../pipeline-dev/* /var/jenkins_home/jobs/devPipeline/workspace/</command>
+    </hudson.tasks.Shell>
+    <javaposse.jobdsl.plugin.ExecuteDslScripts plugin="job-dsl@1.64">
+      <scriptText>pipelineJob(&apos;devPipeline&apos;) {
+    definition {
+        cps {
+            script(readFileFromWorkspace(&apos;Jenkinsfile&apos;))
+            sandbox()
+        }
+    }
+}</scriptText>
+      <usingScriptText>true</usingScriptText>
+      <sandbox>false</sandbox>
+      <ignoreExisting>false</ignoreExisting>
+      <ignoreMissingFiles>false</ignoreMissingFiles>
+      <failOnMissingPlugin>false</failOnMissingPlugin>
+      <unstableOnDeprecation>false</unstableOnDeprecation>
+      <removedJobAction>DELETE</removedJobAction>
+      <removedViewAction>IGNORE</removedViewAction>
+      <removedConfigFilesAction>IGNORE</removedConfigFilesAction>
+      <lookupStrategy>JENKINS_ROOT</lookupStrategy>
+    </javaposse.jobdsl.plugin.ExecuteDslScripts>
+  </builders>
+  <publishers>
+    <hudson.tasks.BuildTrigger>
+      <childProjects>devPipeline</childProjects>
+      <threshold>
+        <name>SUCCESS</name>
+        <ordinal>0</ordinal>
+        <color>BLUE</color>
+        <completeBuild>true</completeBuild>
+      </threshold>
+    </hudson.tasks.BuildTrigger>
+  </publishers>
+  <buildWrappers/>
 </project>
