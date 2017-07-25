@@ -1,5 +1,5 @@
 def shellCommand = '''
-if [ ! -d "$DIRECTORY" ]; then
+if [ ! -d "/var/jenkins_home/jobs/devPipeline/" ]; then
     mkdir /var/jenkins_home/jobs/devPipeline/
     mkdir /var/jenkins_home/jobs/devPipeline/workspace/
 fi

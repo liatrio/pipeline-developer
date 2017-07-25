@@ -17,7 +17,7 @@
   <customWorkspace>/pipeline-dev</customWorkspace>
   <builders>
     <hudson.tasks.Shell>
-      <command>if [ ! -d &quot;$DIRECTORY&quot; ]; then
+      <command>if [ ! -d &quot;/var/jenkins_home/jobs/devPipeline/&quot; ]; then
     mkdir /var/jenkins_home/jobs/devPipeline/
     mkdir /var/jenkins_home/jobs/devPipeline/workspace/
 fi
