@@ -14,3 +14,4 @@ This is a jenkins server for developing pipelines locally without requiring git 
 1. Create a freestyle job.
 2. Have it pull down this repo at `https://github.com/liatrio/pipeline-developer`
 3. Add a "Process Job DSL Script" step and have it look on the filesystem for `createDevJob.groovy`
+4. Add a volume to the jenkins container in the docker-compose that references your project so that jenkins can copy those files in. 
