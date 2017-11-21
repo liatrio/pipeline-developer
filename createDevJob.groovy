@@ -3,6 +3,7 @@ if [ ! -d /var/jenkins_home/jobs/devPipeline/ ]; then
     mkdir /var/jenkins_home/jobs/devPipeline/
     mkdir /var/jenkins_home/jobs/devPipeline/workspace/
 fi
+rm -r /var/jenkins_home/jobs/devPipeline/workspace/*
 cp -r ../pipeline-dev/* /var/jenkins_home/jobs/devPipeline/workspace/
 '''
 

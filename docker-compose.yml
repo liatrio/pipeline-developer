@@ -4,7 +4,7 @@ services:
         build: ./jenkins
         volumes:
             - /var/run/docker.sock:/var/run/docker.sock
-            - ../spring-petclinic:/pipeline-dev
+            - ../sample-pipeline-spring-petclinic:/pipeline-dev
         environment:
             JAVA_OPTS: -Djenkins.install.runSetupWizard=false
         ports:
