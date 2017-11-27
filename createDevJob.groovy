@@ -1,9 +1,11 @@
 def shellCommand = '''
-if [ ! -d /var/jenkins_home/jobs/devPipeline/ ]; then
+if [ ! -d "/var/jenkins_home/jobs/devPipeline/" ]; then
     mkdir /var/jenkins_home/jobs/devPipeline/
     mkdir /var/jenkins_home/jobs/devPipeline/workspace/
 fi
-rm -r /var/jenkins_home/jobs/devPipeline/workspace/*
+if [ -d "/var/jenkins_home/jobs/devPipeline/workspace/"]; then
+	rm -r /var/jenkins_home/jobs/devPipeline/workspace/*
+fi
 cp -r ../pipeline-dev/* /var/jenkins_home/jobs/devPipeline/workspace/
 '''
 
